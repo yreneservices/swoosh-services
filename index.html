@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swoosh Services | Limpezas Airbnb no Seixal</title>
+  <meta name="description" content="Swoosh Services - Limpezas profissionais para alojamento local e Airbnb no Seixal. Serviço cuidado, rápido e fiável." />
+  <style>
+    :root {
+      --bg: #f7f3ee;
+      --bg-soft: #efe7de;
+      --card: rgba(255, 255, 255, 0.72);
+      --text: #3d342d;
+      --muted: #74685e;
+      --accent: #b08b68;
+      --accent-dark: #8f6c4c;
+      --line: rgba(61, 52, 45, 0.12);
+      --white: #ffffff;
+      --shadow: 0 12px 30px rgba(70, 52, 38, 0.08);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #faf7f2 0%, #f4eee7 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--max));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 4.5rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      max-width: 650px;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(250, 247, 242, 0.8);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand strong {
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .brand span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .hero {
+      padding: 4.6rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(176, 139, 104, 0.12);
+      color: var(--accent-dark);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.7rem);
+      line-height: 0.98;
+      margin-bottom: 1rem;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+      max-width: 12ch;
+    }
+
+    .hero p {
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255,255,255,0.65);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--white);
+    }
+
+    .hero-mini {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 540px;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: auto 1rem 1rem 1rem;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 22px;
+      padding: 1rem;
+    }
+
+    .hero-overlay strong {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 0.55rem;
+      font-size: 1.1rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .about-grid,
+    .contact-grid,
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .about-image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .about-image-grid img {
+      border-radius: 24px;
+      height: 260px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1.4rem;
+    }
+
+    .bullet-list li {
+      padding: 0.9rem 1rem;
+      background: rgba(255,255,255,0.5);
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+
+    .prices-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .price-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(250,244,237,0.95) 100%);
+      border: 1px solid rgba(176, 139, 104, 0.18);
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .price-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      color: var(--accent-dark);
+    }
+
+    .price-note {
+      text-align: center;
+      margin-top: 1.2rem;
+      color: var(--muted);
+    }
+
+    .review-card {
+      min-height: 100%;
+    }
+
+    .stars {
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.08em;
+      color: var(--accent-dark);
+    }
+
+    .review-name {
+      margin-top: 1rem;
+      font-weight: 700;
+    }
+
+    .contact-card,
+    .form-card {
+      background: rgba(255,255,255,0.72);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.45);
+      padding: 1.5rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .contact-list li {
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(247,243,238,0.85);
+      border: 1px solid var(--line);
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 0.45rem;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(61, 52, 45, 0.14);
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      padding: 0.95rem 1rem;
+      font: inherit;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 0.7rem;
+    }
+
+    .footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: 1.5rem;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 1200;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35);
+      font-size: 1.6rem;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-2px);
+    }
+
+    [data-lang] {
+      display: none;
+    }
+
+    [data-lang].active {
+      display: initial;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .reviews-grid,
+      .cards-3,
+      .prices-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: 380px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.9rem 0;
+      }
+
+      .nav-links {
+        gap: 0.9rem;
+      }
+
+      .about-image-grid,
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 3.6rem 0;
+      }
+
+      h1 {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <strong>Swoosh Services</strong>
+        <span>
+          <span data-lang="pt" class="active">Limpezas Airbnb · Seixal</span>
+          <span data-lang="en">Airbnb Cleaning · Seixal</span>
+        </span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#sobre">
+          <span data-lang="pt" class="active">Sobre</span>
+          <span data-lang="en">About</span>
+        </a>
+        <a href="#precos">
+          <span data-lang="pt" class="active">Preços</span>
+          <span data-lang="en">Prices</span>
+        </a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contactos">
+          <span data-lang="pt" class="active">Contactos</span>
+          <span data-lang="en">Contact</span>
+        </a>
+        <div class="lang-toggle" aria-label="Language toggle">
+          <button class="lang-btn active" data-set-lang="pt">PT</button>
+          <button class="lang-btn" data-set-lang="en">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span data-lang="pt" class="active">✨ Serviço profissional para alojamento local</span>
+            <span data-lang="en">✨ Professional service for short-term rentals</span>
+          </div>
+
+          <h1>
+            <span data-lang="pt" class="active">Limpezas Airbnb com cuidado, rapidez e confiança.</span>
+            <span data-lang="en">Airbnb cleaning with care, speed and reliability.</span>
+          </h1>
+
+          <p>
+            <span data-lang="pt" class="active">Na Swoosh Services ajudamos anfitriões a manter os seus espaços impecáveis, acolhedores e prontos para cada check-in. Estamos localizados no Seixal e trabalhamos com atenção ao detalhe, apresentação e consistência.</span>
+            <span data-lang="en">At Swoosh Services, we help hosts keep their spaces spotless, welcoming and ready for every check-in. We are based in Seixal and work with attention to detail, presentation and consistency.</span>
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/447576671583" target="_blank" rel="noopener">
+              <span data-lang="pt" class="active">Falar no WhatsApp</span>
+              <span data-lang="en">Chat on WhatsApp</span>
+            </a>
+            <a class="btn btn-secondary" href="#precos">
+              <span data-lang="pt" class="active">Ver preços</span>
+              <span data-lang="en">See prices</span>
+            </a>
+          </div>
+
+          <div class="hero-mini">
+            <span>
+              <span data-lang="pt" class="active">📍 Localizada no Seixal</span>
+              <span data-lang="en">📍 Located in Seixal</span>
+            </span>
+            <span>
+              <span data-lang="pt" class="active">📞 +44 7576 671583</span>
+              <span data-lang="en">📞 +44 7576 671583</span>
+            </span>
+            <span>
+              <span data-lang="pt" class="active">✉️ swooshservicespt@gmail.com</span>
+              <span data-lang="en">✉️ swooshservicespt@gmail.com</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Apartamento limpo e acolhedor" />
+          <div class="hero-overlay">
+            <strong>
+              <span data-lang="pt" class="active">Pronto para receber hóspedes</span>
+              <span data-lang="en">Ready to welcome guests</span>
+            </strong>
+            <span data-lang="pt" class="active">Um espaço limpo faz toda a diferença na experiência e nas reviews.</span>
+            <span data-lang="en">A spotless space makes all the difference to the guest experience and reviews.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container cards-3">
+        <article class="card">
+          <h3>
+            <span data-lang="pt" class="active">Detalhe que se nota</span>
+            <span data-lang="en">Detail that stands out</span>
+          </h3>
+          <p>
+            <span data-lang="pt" class="active">Cada limpeza é feita com foco na apresentação do espaço, conforto do hóspede e imagem do alojamento.</span>
+            <span data-lang="en">Every clean is done with a focus on presentation, guest comfort and the image of your property.</span>
+          </p>
+        </article>
+        <article class="card">
+          <h3>
+            <span data-lang="pt" class="active">Ideal para anfitriões</span>
+            <span data-lang="en">Ideal for hosts</span>
+          </h3>
+          <p>
+            <span data-lang="pt" class="active">Serviço pensado para alojamento local, mudanças rápidas entre reservas e manutenção de um padrão consistente.</span>
+            <span data-lang="en">A service designed for short-term rentals, fast turnarounds between bookings and a consistent standard.</span>
+          </p>
+        </article>
+        <article class="card">
+          <h3>
+            <span data-lang="pt" class="active">Comunicação simples</span>
+            <span data-lang="en">Simple communication</span>
+          </h3>
+          <p>
+            <span data-lang="pt" class="active">Contacto rápido por WhatsApp, chamada ou email para pedidos, dúvidas e marcações.</span>
+            <span data-lang="en">Fast contact by WhatsApp, phone or email for bookings, questions and support.</span>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="sobre">
+      <div class="container about-grid">
+        <div>
+          <h2 class="section-title">
+            <span data-lang="pt" class="active">Sobre a Swoosh Services</span>
+            <span data-lang="en">About Swoosh Services</span>
+          </h2>
+          <p class="section-subtitle">
+            <span data-lang="pt" class="active">Criámos um serviço de limpeza com imagem cuidada, linguagem profissional e uma abordagem discreta e fiável para anfitriões de Airbnb e alojamento local.</span>
+            <span data-lang="en">We created a cleaning service with a polished image, professional communication and a discreet, reliable approach for Airbnb and short-term rental hosts.</span>
+          </p>
+
+          <p>
+            <span data-lang="pt" class="active">Sabemos que no alojamento local não basta “estar limpo”. O espaço tem de transmitir frescura, organização e conforto assim que o hóspede entra. É essa sensação que procuramos entregar em cada serviço.</span>
+            <span data-lang="en">We know that in short-term rentals, it is not enough for a place to simply be “clean”. It needs to feel fresh, organised and comfortable from the moment the guest walks in. That is the feeling we aim to deliver every time.</span>
+          </p>
+
+          <ul class="bullet-list">
+            <li>
+              <span data-lang="pt" class="active">✔ Serviço focado em apartamentos e alojamento local</span>
+              <span data-lang="en">✔ Service focused on apartments and short-term rentals</span>
+            </li>
+            <li>
+              <span data-lang="pt" class="active">✔ Imagem minimal, cuidada e profissional</span>
+              <span data-lang="en">✔ Minimal, polished and professional presentation</span>
+            </li>
+            <li>
+              <span data-lang="pt" class="active">✔ Atendimento em português e inglês</span>
+              <span data-lang="en">✔ Support in Portuguese and English</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="about-image-grid">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80" alt="Espaço organizado e luminoso" />
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Cama feita em alojamento local" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="precos">
+      <div class="container">
+        <h2 class="section-title">
+          <span data-lang="pt" class="active">Preços</span>
+          <span data-lang="en">Prices</span>
+        </h2>
+        <p class="section-subtitle">
+          <span data-lang="pt" class="active">Preçário simples e transparente para limpezas de alojamento local.</span>
+          <span data-lang="en">Simple and transparent pricing for short-term rental cleaning.</span>
+        </p>
+
+        <div class="prices-grid">
+          <article class="price-card">
+            <h3>T0 / T1</h3>
+            <div class="price">60€</div>
+            <p>
+              <span data-lang="pt" class="active">Ideal para estúdios e apartamentos pequenos.</span>
+              <span data-lang="en">Ideal for studios and smaller apartments.</span>
+            </p>
+          </article>
+          <article class="price-card">
+            <h3>T2</h3>
+            <div class="price">70€</div>
+            <p>
+              <span data-lang="pt" class="active">Equilíbrio entre rapidez e detalhe.</span>
+              <span data-lang="en">A balanced option with speed and attention to detail.</span>
+            </p>
+          </article>
+          <article class="price-card">
+            <h3>T3</h3>
+            <div class="price">85€</div>
+            <p>
+              <span data-lang="pt" class="active">Para espaços familiares com mais divisões.</span>
+              <span data-lang="en">For larger family spaces with more rooms.</span>
+            </p>
+          </article>
+          <article class="price-card">
+            <h3>T4</h3>
+            <div class="price">110€</div>
+            <p>
+              <span data-lang="pt" class="active">Serviço completo para alojamentos maiores.</span>
+              <span data-lang="en">Full service for larger properties.</span>
+            </p>
+          </article>
+        </div>
+
+        <p class="price-note">
+          <span data-lang="pt" class="active">Para pedidos especiais, limpezas recorrentes ou mais informações, contacte-nos diretamente.</span>
+          <span data-lang="en">For special requests, recurring cleans or more information, contact us directly.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <h2 class="section-title">Reviews</h2>
+        <p class="section-subtitle">
+          <span data-lang="pt" class="active">Exemplos de feedback que valorizamos: confiança, apresentação e consistência.</span>
+          <span data-lang="en">Examples of the kind of feedback we value: trust, presentation and consistency.</span>
+        </p>
+
+        <div class="reviews-grid">
+          <article class="card review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              <span data-lang="pt" class="active">“Serviço impecável, comunicação rápida e o apartamento ficou com excelente apresentação para os hóspedes.”</span>
+              <span data-lang="en">“Impeccable service, quick communication and the apartment looked excellent for guests.”</span>
+            </p>
+            <div class="review-name">Ana, anfitriã local</div>
+          </article>
+          <article class="card review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              <span data-lang="pt" class="active">“Gostei da atenção ao detalhe e da imagem profissional. Faz diferença quando queremos boas avaliações.”</span>
+              <span data-lang="en">“I loved the attention to detail and the professional approach. It really helps when you want great reviews.”</span>
+            </p>
+            <div class="review-name">Miguel, gestor de alojamento</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contactos">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <h2 class="section-title">
+            <span data-lang="pt" class="active">Contacte-nos</span>
+            <span data-lang="en">Contact us</span>
+          </h2>
+          <p class="section-subtitle">
+            <span data-lang="pt" class="active">Estamos disponíveis para responder a dúvidas, pedidos de orçamento e marcações.</span>
+            <span data-lang="en">We are available for questions, quotes and bookings.</span>
+          </p>
+
+          <ul class="contact-list">
+            <li>
+              <strong>Email</strong><br />
+              <a href="mailto:swooshservicespt@gmail.com">swooshservicespt@gmail.com</a>
+            </li>
+            <li>
+              <strong>
+                <span data-lang="pt" class="active">Telefone</span>
+                <span data-lang="en">Phone</span>
+              </strong><br />
+              <a href="tel:+447576671583">+44 7576 671583</a>
+            </li>
+            <li>
+              <strong>WhatsApp</strong><br />
+              <a href="https://wa.me/447576671583" target="_blank" rel="noopener">+44 7576 671583</a>
+            </li>
+            <li>
+              <strong>
+                <span data-lang="pt" class="active">Localização</span>
+                <span data-lang="en">Location</span>
+              </strong><br />
+              Seixal
+            </li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <h3>
+            <span data-lang="pt" class="active">Envie uma mensagem</span>
+            <span data-lang="en">Send us a message</span>
+          </h3>
+
+          <form action="https://formsubmit.co/swooshservicespt@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Novo contacto do website Swoosh Services" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+
+            <div class="field-row">
+              <div>
+                <label for="name">
+                  <span data-lang="pt" class="active">Nome</span>
+                  <span data-lang="en">Name</span>
+                </label>
+                <input id="name" name="name" type="text" required />
+              </div>
+              <div>
+                <label for="email">
+                  <span data-lang="pt" class="active">Email</span>
+                  <span data-lang="en">Email</span>
+                </label>
+                <input id="email" name="email" type="email" required />
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div>
+                <label for="phone">
+                  <span data-lang="pt" class="active">Telefone</span>
+                  <span data-lang="en">Phone</span>
+                </label>
+                <input id="phone" name="phone" type="text" />
+              </div>
+              <div>
+                <label for="property">
+                  <span data-lang="pt" class="active">Tipo de imóvel</span>
+                  <span data-lang="en">Property type</span>
+                </label>
+                <select id="property" name="property">
+                  <option>T0/T1</option>
+                  <option>T2</option>
+                  <option>T3</option>
+                  <option>T4</option>
+                  <option>
+                    <span data-lang="pt" class="active">Outro</span>
+                    <span data-lang="en">Other</span>
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="message">
+                <span data-lang="pt" class="active">Mensagem</span>
+                <span data-lang="en">Message</span>
+              </label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">
+              <span data-lang="pt" class="active">Enviar pedido</span>
+              <span data-lang="en">Send request</span>
+            </button>
+          </form>
+
+          <p class="small-note">
+            <span data-lang="pt" class="active">Nota: este formulário envia as mensagens diretamente para swooshservicespt@gmail.com através do FormSubmit. Quando publicar o site, terá de confirmar o email na primeira submissão.</span>
+            <span data-lang="en">Note: this form sends messages directly to swooshservicespt@gmail.com through FormSubmit. After publishing the site, you will need to confirm the email on the first submission.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Swoosh Services</div>
+      <div>
+        <span data-lang="pt" class="active">Seixal · Limpezas Airbnb · Português & English</span>
+        <span data-lang="en">Seixal · Airbnb Cleaning · Português & English</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/447576671583" target="_blank" rel="noopener" aria-label="WhatsApp">
+    ✆
+  </a>
+
+  <script>
+    const langButtons = document.querySelectorAll('[data-set-lang]');
+    const langElements = document.querySelectorAll('[data-lang]');
+
+    function setLanguage(lang) {
+      langElements.forEach(el => {
+        el.classList.toggle('active', el.dataset.lang === lang);
+      });
+
+      langButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.setLang === lang);
+      });
+
+      document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en';
+      localStorage.setItem('swoosh-lang', lang);
+    }
+
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.setLang));
+    });
+
+    const savedLang = localStorage.getItem('swoosh-lang') || 'pt';
+    setLanguage(savedLang);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
